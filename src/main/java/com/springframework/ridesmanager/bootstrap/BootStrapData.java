@@ -1,0 +1,27 @@
+package com.springframework.ridesmanager.bootstrap;
+
+import com.springframework.ridesmanager.domain.Customer;
+import com.springframework.ridesmanager.repositories.CustomerRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+@Component
+public class BootStrapData implements CommandLineRunner {
+
+    private final CustomerRepository customerRepository;
+
+    public BootStrapData(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println("Inicializando Usuários.");
+        Customer c1 = new Customer();
+        c1.setFirstname("Joao");
+        c1.setLastname("Paulo");
+        customerRepository.save(c1);
+
+        System.out.println(customerRepository.count());
+    }
+}
