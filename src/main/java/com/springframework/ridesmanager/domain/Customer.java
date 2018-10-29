@@ -12,8 +12,10 @@ import javax.persistence.Id;
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
     private String firstname;
     private String lastname;
+    private String phone;
+//    private String authenticationToken;
 }

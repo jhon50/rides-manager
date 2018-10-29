@@ -5,6 +5,8 @@ import com.springframework.ridesmanager.repositories.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class BootStrapData implements CommandLineRunner {
 
@@ -20,6 +22,9 @@ public class BootStrapData implements CommandLineRunner {
         Customer c1 = new Customer();
         c1.setFirstname("Joao");
         c1.setLastname("Paulo");
+        c1.setPhone("12341234");
+        c1.setId(UUID.randomUUID().toString());
+
         customerRepository.save(c1);
 
         System.out.println(customerRepository.count());
