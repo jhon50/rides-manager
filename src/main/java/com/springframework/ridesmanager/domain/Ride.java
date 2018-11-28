@@ -14,8 +14,7 @@ public class Ride {
     private String authentication_token;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "serial")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String start_time;
     private String destination;
