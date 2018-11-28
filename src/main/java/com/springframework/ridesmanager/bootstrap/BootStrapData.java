@@ -18,15 +18,15 @@ public class BootStrapData implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Inicializando Usuários.");
-        Customer c1 = new Customer();
-        c1.setFirstname("Joao");
-        c1.setLastname("Paulo");
-        c1.setPhone("12341234");
-        c1.setId(UUID.randomUUID().toString());
-
-        customerRepository.save(c1);
-
-        System.out.println(customerRepository.count());
+//        System.out.println("Inicializando Usuários.");
+//        Customer c1 = new Customer();
+//        c1.setFirstname("Joao");
+//        c1.setLastname("Paulo");
+//        c1.setPhone("12341234");
+//        c1.setId(UUID.randomUUID().toString());
+//
+//        customerRepository.save(c1);
+//
+//        System.out.println(customerRepository.count());
     }
 }
