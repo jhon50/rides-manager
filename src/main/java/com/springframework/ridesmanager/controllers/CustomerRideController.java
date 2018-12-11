@@ -27,15 +27,21 @@ public class CustomerRideController {
         this.customerRideService = customerRideService;
     }
 
-//    @GetMapping
-//    List<Ride> getAllCustomerRides() {
-////        return customerRideService.findAllCustomerRides();
-//    }
-
     @GetMapping("/{id}")
-    public CustomerRide getCustomerRideById(@PathVariable Long id) {
-        return customerRideService.findCustomerRideById(id);
+    List<CustomerRide> getAllCustomerRides(@PathVariable String id) {
+
+        List<CustomerRide> customerRides = customerRideService.findAllCustomerRides(id);
+        for (CustomerRide customerRide  : customerRides) {
+            customerRide.getRide().setSlots(rideService.customerRidesCount(customerRide.getRide()) - 1);
+        }
+
+        return customerRideService.findAllCustomerRides(id);
     }
+
+//    @GetMapping("/{id}")
+//    public CustomerRide getCustomerRideById(@PathVariable Long id) {
+//        return customerRideService.findCustomerRideById(id);
+//    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

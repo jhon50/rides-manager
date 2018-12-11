@@ -1,7 +1,9 @@
 package com.springframework.ridesmanager.controllers;
 
 import com.springframework.ridesmanager.domain.Customer;
+import com.springframework.ridesmanager.domain.CustomerRide;
 import com.springframework.ridesmanager.domain.Ride;
+import com.springframework.ridesmanager.services.CustomerRideService;
 import com.springframework.ridesmanager.services.CustomerService;
 import com.springframework.ridesmanager.services.RideService;
 import org.json.JSONObject;
@@ -19,15 +21,23 @@ public class RideController {
     public static final String BASE_URL = "/api/v1/rides";
     private final RideService rideService;
     private final CustomerService customerService;
+    private final CustomerRideService customerRideService;
 
-    public RideController(RideService rideService, CustomerService customerService) {
+    public RideController(RideService rideService, CustomerService customerService, CustomerRideService customerRideService) {
         this.rideService = rideService;
         this.customerService = customerService;
+        this.customerRideService = customerRideService;
     }
 
     @GetMapping
     List<Ride> getAllRides() {
-        return rideService.findAllRides();
+
+        List<Ride> rides = rideService.findAllRides();
+        for (Ride ride  : rides) {
+            ride.setSlots(rideService.customerRidesCount(ride) - 1);
+        }
+
+        return rides;
     }
 
     @GetMapping("/{id}")
@@ -41,7 +51,15 @@ public class RideController {
         String authentication_token = ride.getAuthentication_token();
         Customer customer = customerService.findCustomerById(authentication_token);
         ride.setCustomer(customer);
-        return rideService.saveRide(ride);
+        ride = rideService.saveRide(ride);
+
+        // Add customer to its own ride
+        CustomerRide customerRide = new CustomerRide();
+        customerRide.setRide(ride);
+        customerRide.setCustomer(customer);
+        customerRideService.saveCustomerRide(customerRide);
+
+        return ride;
     }
 
 }

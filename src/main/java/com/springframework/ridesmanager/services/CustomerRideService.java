@@ -9,7 +9,7 @@ public interface CustomerRideService {
 
     CustomerRide findCustomerRideById(Long id);
 
-//    List<CustomerRide> findAllCustomerRides(Long id);
-//
+    List<CustomerRide> findAllCustomerRides(String id);
+
     CustomerRide saveCustomerRide(CustomerRide customerRide);
 }

@@ -22,10 +22,10 @@ public class CustomerRideServiceImpl implements CustomerRideService {
         return customerRideRepository.findById(id).get();
     }
 
-//    @Override
-//    public List<Customer> findAllCustomerRides() {
-//        return customerRideRepository.findAll();
-//    }
+    @Override
+    public List<CustomerRide> findAllCustomerRides(String id) {
+        return customerRideRepository.findAllByCustomerId(id);
+    }
 
     @Override
     public CustomerRide saveCustomerRide(CustomerRide customerRide) {

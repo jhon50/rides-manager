@@ -11,5 +11,7 @@ public interface RideService {
 
     List<Ride> findAllRides();
 
+    Integer customerRidesCount(Ride ride);
+
     Ride saveRide(Ride ride);
 }
