@@ -27,6 +27,7 @@ public class BootStrapData implements CommandLineRunner {
 
         customerRepository.save(c1);
 
-        System.out.println(customerRepository.count());
+//        System.out.println(customerRepository.count());
+        System.out.println("Usuários salvos: " + customerRepository.count());
     }
 }
