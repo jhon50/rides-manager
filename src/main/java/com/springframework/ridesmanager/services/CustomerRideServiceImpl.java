@@ -28,6 +28,12 @@ public class CustomerRideServiceImpl implements CustomerRideService {
     }
 
     @Override
+    public List<CustomerRide> findAllCustomerRides(Long rideId) {
+
+        return customerRideRepository.findAllByRideId(rideId);
+    }
+
+    @Override
     public CustomerRide saveCustomerRide(CustomerRide customerRide) {
         return customerRideRepository.save(customerRide);
     }

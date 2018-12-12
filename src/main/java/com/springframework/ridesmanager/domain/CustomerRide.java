@@ -30,5 +30,6 @@ public class CustomerRide {
     @ManyToOne
     private Ride ride;
 
+    private Integer rating;
 
 }

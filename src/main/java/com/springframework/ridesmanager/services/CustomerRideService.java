@@ -11,5 +11,7 @@ public interface CustomerRideService {
 
     List<CustomerRide> findAllCustomerRides(String id);
 
+    List<CustomerRide> findAllCustomerRides(Long rideId);
+
     CustomerRide saveCustomerRide(CustomerRide customerRide);
 }
